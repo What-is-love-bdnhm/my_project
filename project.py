@@ -9,6 +9,22 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QColorDialog, QGridLayout, QLabel, QWidget
 
 
+class Story_img(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('story_window.ui', self)
+        self.button_1.clicked.connect(self.run)
+        self.button_2.clicked.connect(self.run)
+
+    def run(self):
+        sender = self.sender().text()
+
+        if sender == "Показать":
+            print("показать")
+
+        elif sender == "Выбрать":
+            print("выбрать")
+
 class Rdimm(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -49,21 +65,9 @@ class Example(QMainWindow):
         self.completed = 0
         self.allowed = False
 
-        self.button_1.clicked.connect(self.run)
-        self.button_2.clicked.connect(self.run)
-        self.button_3.clicked.connect(self.run)
-        self.button_4.clicked.connect(self.run)
-        self.button_5.clicked.connect(self.run)
-        self.button_6.clicked.connect(self.run)
-        self.button_7.clicked.connect(self.run)
-        self.button_8.clicked.connect(self.run)
-        self.button_9.clicked.connect(self.run)
-        self.button_10.clicked.connect(self.run)
-        self.button_11.clicked.connect(self.run)
-        self.button_12.clicked.connect(self.run)
-        self.button_13.clicked.connect(self.run)
-        self.button_14.clicked.connect(self.run)
-        self.button_15.clicked.connect(self.run)
+        for i in range(1, 16):
+            self.but = eval(f'self.button_{i}')
+            self.but.clicked.connect(self.run)
 
 
     def read_picture(self):
@@ -95,6 +99,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
 
 
         elif sender == 'По часовой' and self.allowed:
@@ -272,6 +278,11 @@ class Example(QMainWindow):
             self.rdwindow.show()
             self.hide()
             self.show()
+
+        elif sender == 'История изменений':
+
+            self.story_img = Story_img()
+            self.story_img.show()
 
 
 
