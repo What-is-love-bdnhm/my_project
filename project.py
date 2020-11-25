@@ -110,6 +110,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -126,6 +128,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -135,6 +139,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -164,6 +170,8 @@ class Example(QMainWindow):
             self.rdwindow.show()
             self.completed = 0
             self.progress.setValue(self.completed)
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -173,6 +181,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -182,6 +192,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -191,6 +203,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -200,6 +214,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -209,6 +225,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -218,6 +236,8 @@ class Example(QMainWindow):
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
             self.how_many_times()
 
 
@@ -250,6 +270,8 @@ class Example(QMainWindow):
             self.how_many_times(True)
             self.rdwindow = Rdimm()
             self.rdwindow.show()
+            self.hide()
+            self.show()
 
 
 
