@@ -10,7 +10,7 @@ import sqlite3 as lite
 from PyQt5.QtGui import QPixmap, QTransform
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QColorDialog, QGridLayout, QLabel, QWidget, \
-    QTableWidgetItem
+    QTableWidgetItem, QInputDialog
 
 
 class Story_img(QMainWindow):
@@ -334,6 +334,17 @@ class Example(QMainWindow):
 
             self.story_img = Story_img()
             self.story_img.show()
+
+        elif sender == 'Сохранить':
+
+            print('work')
+            text, ok = QInputDialog.getText(self, 'Ввод', 'Название изображения')
+            name = f'{text}.jpg'
+
+            dlg = QFileDialog.getExistingDirectory(self,"Выбрать папку",".")
+            print(f'{dlg}/{name}')
+            Image.open('rd_imm.jpg').save(dlg)
+
 
 
 if __name__ == '__main__':
