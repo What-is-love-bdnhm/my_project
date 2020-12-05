@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>404</height>
+    <height>408</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -213,6 +213,20 @@
          <widget class="QPushButton" name="button_15">
           <property name="text">
            <string>SOS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Хотите сохранить?</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="button_16">
+          <property name="text">
+           <string>Сохранить</string>
           </property>
          </widget>
         </item>
