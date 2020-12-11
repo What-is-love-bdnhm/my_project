@@ -17,6 +17,7 @@ class Story_img(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi('story_window.ui', self)
+        self.setWindowTitle("История изменений")
         self.button_1.clicked.connect(self.run)
         self.button_2.clicked.connect(self.run)
         self.connection = sqlite3.connect("image_story.sqlite")
@@ -47,16 +48,30 @@ class Story_img(QMainWindow):
                 resized_img = img.resize((409, 423), Image.ANTIALIAS)
                 resized_img.save('miniature.jpg')
                 self.label.setPixmap(QPixmap('miniature.jpg'))
-                # 405 390
             else:
                 self.id.setText('Нормальное id напиши')
 
 
         elif sender == "Выбрать":
-            print("выбрать")
+            self.conn = sqlite3.connect('image_story.sqlite')
+            n = self.id.text()
+            if len(self.z.namelist()) < int(n):
+                print('нет такого id')
+                return
+            img = self.conn.cursor().execute("SELECT im_name FROM images WHERE im_id = ?", (str(n)))
+            name = [i[0] for i in img][0]
+            img = Image.open(self.z.extract(name))
+            img.save('rd_imm.jpg')
+            self.hide()
+            Example().how_many_times(False, int(n))
+
+
+
+
 
         elif sender == 'Обновить':
-            self.table()
+            self.hide()
+            self.show()
 
 
 class Rdimm(QMainWindow):
@@ -114,9 +129,14 @@ class Example(QMainWindow):
         self.conn.cursor().execute("INSERT INTO images VALUES (?, ?, ?);", (self.times,act,'rd_imm_{}.jpg'.format(self.times)))
         self.conn.commit()
 
-    def how_many_times(self, new=False):
+    def how_many_times(self, new=False, get=None):
 
         self.times += 1
+
+        if get != None:
+            n = int([get][0])
+            self.schet.display(n)
+            return
 
         if new:
             self.times = 0
@@ -127,7 +147,7 @@ class Example(QMainWindow):
 
         sender = self.sender().text()
 
-        if sender == 'SOS' and self.allowed:
+        if sender == 'SOS':
 
             self.rdwindow.hide()
             self.rdwindow = Rdimm()
@@ -220,7 +240,7 @@ class Example(QMainWindow):
 
         elif sender == 'Размытие' and self.allowed:
 
-            Image.open().filter(ImageFilter.BLUR).save('rd_imm.jpg')
+            Image.open('rd_imm.jpg').filter(ImageFilter.BLUR).save('rd_imm.jpg')
             self.how_many_times()
             self.save_picture('Размытие')
             self.rdwindow.hide()
@@ -330,20 +350,18 @@ class Example(QMainWindow):
             self.hide()
             self.show()
 
-        elif sender == 'История изменений':
+        elif sender == 'История изменений' and self.allowed:
 
             self.story_img = Story_img()
             self.story_img.show()
 
-        elif sender == 'Сохранить':
+        elif sender == 'Сохранить' and self.allowed:
 
-            print('work')
             text, ok = QInputDialog.getText(self, 'Ввод', 'Название изображения')
             name = f'{text}.jpg'
-
-            dlg = QFileDialog.getExistingDirectory(self,"Выбрать папку",".")
-            print(f'{dlg}/{name}')
-            Image.open('rd_imm.jpg').save(dlg)
+            dlg = QFileDialog.getExistingDirectory(self, "Выбрать папку")
+            img = Image.open('rd_imm.jpg')
+            img.save(f'{dlg}/{name}')
 
 
 
